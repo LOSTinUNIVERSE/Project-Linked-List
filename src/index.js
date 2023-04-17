@@ -12,28 +12,39 @@ function append(value,) {
     else {
         this.tail.next = newNode
         this.tail = newNode
+        newNode.next = null
         this.number++
     }
+    // console.log(this);
 }
 function prepend(value) {
     const newNode = Node(value)
     newNode.next = this.head
     this.head = newNode
     this.number++
-    console.log(this);
+    // console.log(this);
 }
 function count() { console.log(this.number) }
 function showHead() { console.log(this.head) }
 function showTail() { console.log(this.tail) }
+function findByIndex(value, number = 0, caller = this.head) {
+    console.log(this.count);
+    if (number <= value) {
+        number++
+        console.log(caller);
+        findByIndex(value, number, caller.next)
+    }
+}
 
-const LinkedList = () => ({ head: null, number: 0, append, prepend, count, showHead, showTail })
+const LinkedList = () => ({ head: null, number: 0, append, prepend, count, showHead, showTail, findByIndex })
 
 const test2 = LinkedList()
 test2.append('a')
 test2.append('b')
 test2.append('c')
 test2.prepend('k')
-// test2.count()
+test2.count()
 // test2.showHead()
 // test2.showTail()
+test2.findByIndex(8)
 
