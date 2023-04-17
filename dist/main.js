@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\nconst Node = (value) => ({ value })\n\n\nfunction append(value,) {\n    let newNode = Node(value)\n    if (!this.head) {\n        this.head = newNode\n        newNode.next = null\n        const lastChild = newNode\n        this.lastChild = lastChild\n    }\n\n    else {\n        newNode = this.lastChild\n    }\n}\nconst LinkedList = () => ({ head: null, append })\n\nconst test2 = LinkedList()\ntest2.append('g')\ntest2.append('b')\n// test2.append('bbb')\n\nconsole.log(test2);\n\n\n//# sourceURL=webpack://template/./src/index.js?");
+eval("\nconst Node = (value) => ({ value })\n\n\nfunction append(value,) {\n    const newNode = Node(value)\n    if (!this.head) {\n        this.head = newNode\n        this.tail = newNode\n        this.number++\n    }\n    else {\n        this.tail.next = newNode\n        this.tail = newNode\n        this.number++\n    }\n}\nfunction prepend(value) {\n    const newNode = Node(value)\n    newNode.next = this.head\n    this.head = newNode\n    this.number++\n    console.log(this);\n}\nfunction count() { console.log(this.number) }\nfunction showHead() { console.log(this.head) }\nfunction showTail() { console.log(this.tail) }\n\nconst LinkedList = () => ({ head: null, number: 0, append, prepend, count, showHead, showTail })\n\nconst test2 = LinkedList()\ntest2.append('a')\ntest2.append('b')\ntest2.append('c')\ntest2.prepend('k')\n// test2.count()\n// test2.showHead()\n// test2.showTail()\n\n\n\n//# sourceURL=webpack://template/./src/index.js?");
 
 /***/ })
 
