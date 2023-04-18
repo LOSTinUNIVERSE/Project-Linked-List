@@ -52,11 +52,18 @@ function pop(value, number = 0, caller = this.head, parent = this) {
         pop(value, number, caller.next, parent)
     }
 }
-
+const contains = function (itemToFind, value = this.number, number = 0, caller = this.head) {
+    if (number < value) {
+        number++
+        console.log(caller);
+        if (caller.value == itemToFind) return console.log(true);;
+        contains(itemToFind, value, number, caller.next)
+    }
+}
 const LinkedList = () => ({
     head: null, number: 0, append,
     prepend, count, showHead,
-    showTail, findByIndex, pop
+    showTail, findByIndex, pop, contains
 })
 
 const test2 = LinkedList()
@@ -64,12 +71,8 @@ test2.append('a')
 test2.append('b')
 test2.append('c')
 test2.prepend('k')
-// test2.count()
-// test2.showHead()
-// test2.showTail()
-// test2.findByIndex(3)
-// console.log(result);
-test2.pop(test2.number)
-test2.pop(test2.number)
-console.log(test2);
+// test2.pop(test2.number)
+// test2.pop(test2.number)
+test2.contains('c')
+// console.log(test2);
 
