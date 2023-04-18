@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 
 const Node = (value) => ({ value })
 
@@ -7,6 +8,7 @@ function append(value,) {
     if (!this.head) {
         this.head = newNode
         this.tail = newNode
+        this.tail.next = null
         this.number++
     }
     else {
@@ -27,24 +29,47 @@ function prepend(value) {
 function count() { console.log(this.number) }
 function showHead() { console.log(this.head) }
 function showTail() { console.log(this.tail) }
-function findByIndex(value, number = 0, caller = this.head) {
-    console.log(this.count);
+
+let result = null
+
+const findByIndex = function (value, number = 1, caller = this.head) {
+    if (value > this.number) { value = this.number; }
     if (number <= value) {
         number++
-        console.log(caller);
+        result = caller
         findByIndex(value, number, caller.next)
     }
 }
 
-const LinkedList = () => ({ head: null, number: 0, append, prepend, count, showHead, showTail, findByIndex })
+function pop(value, number = 0, caller = this.head, parent = this) {
+    if (number < value - 1) {
+        number++
+        if (number == value - 1) {
+            caller.next = null
+            parent.tail = caller
+            parent.number -= 1
+        }
+        pop(value, number, caller.next, parent)
+    }
+}
+
+const LinkedList = () => ({
+    head: null, number: 0, append,
+    prepend, count, showHead,
+    showTail, findByIndex, pop
+})
 
 const test2 = LinkedList()
 test2.append('a')
 test2.append('b')
 test2.append('c')
 test2.prepend('k')
-test2.count()
+// test2.count()
 // test2.showHead()
 // test2.showTail()
-test2.findByIndex(8)
+// test2.findByIndex(3)
+// console.log(result);
+test2.pop(test2.number)
+test2.pop(test2.number)
+console.log(test2);
 
