@@ -39,6 +39,7 @@ const findByIndex = function (value, number = 1, caller = this.head) {
         result = caller
         findByIndex(value, number, caller.next)
     }
+    if (number == value) console.log(result);
 }
 
 function pop(value, number = 0, caller = this.head, parent = this) {
@@ -55,17 +56,24 @@ function pop(value, number = 0, caller = this.head, parent = this) {
 const contains = function (itemToFind, value = this.number, number = 0, caller = this.head) {
     if (number < value) {
         number++
-        console.log(caller);
-        if (caller.value == itemToFind) return console.log(true);;
+        if (caller.value == itemToFind) return console.log(true, number);;
         contains(itemToFind, value, number, caller.next)
     }
+}
+const find = function (itemToFind, value = this.number, number = 0, caller = this.head) {
+    let findResult = null
+    if (number < value) {
+        number++
+        if (caller.value == itemToFind) { findResult = number; }
+        find(itemToFind, value, number, caller.next)
+    }
+    if (number == value) { console.log(findResult) }
 }
 const LinkedList = () => ({
     head: null, number: 0, append,
     prepend, count, showHead,
-    showTail, findByIndex, pop, contains
+    showTail, findByIndex, pop, contains, find
 })
-
 const test2 = LinkedList()
 test2.append('a')
 test2.append('b')
@@ -73,6 +81,6 @@ test2.append('c')
 test2.prepend('k')
 // test2.pop(test2.number)
 // test2.pop(test2.number)
-test2.contains('c')
-// console.log(test2);
-
+// test2.findByIndex(4)
+// test2.contains('c')
+test2.find('c')
