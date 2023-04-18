@@ -69,18 +69,32 @@ const find = function (itemToFind, value = this.number, number = 0, caller = thi
     }
     if (number == value) { console.log(findResult) }
 }
+const toString = function (value = this.number, number = 0, caller = this.head, string = '') {
+    if (number < value) {
+        number++
+        string += ` (${caller.value}) -> `
+        // console.log(string);
+        toString(value, number, caller.next, string)
+    }
+    if (number == value) {
+        string += 'null'
+        return console.log(string);
+    }
+}
 const LinkedList = () => ({
     head: null, number: 0, append,
     prepend, count, showHead,
-    showTail, findByIndex, pop, contains, find
+    showTail, findByIndex, pop, contains,
+    find, toString
 })
 const test2 = LinkedList()
-test2.append('a')
-test2.append('b')
-test2.append('c')
-test2.prepend('k')
-// test2.pop(test2.number)
+// test2.append('a')
+// test2.append('b')
+// test2.append('c')
+// test2.prepend('k')
 // test2.pop(test2.number)
 // test2.findByIndex(4)
 // test2.contains('c')
-test2.find('c')
+// test2.find('c')
+// test2.toString()
+// console.log(test2.toString);
